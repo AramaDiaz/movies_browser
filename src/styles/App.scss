@@ -1,0 +1,123 @@
+html {
+  background: linear-gradient(90deg, #bfb7b7, #e1dcdc, #f8f8f8);
+
+  .App {
+    text-align: center;
+
+    .pick {
+      display: block;
+      text-decoration: none;
+      color: rgb(78, 75, 75);
+      text-align: start;
+      text-transform: capitalize;
+      font-size: larger;
+      font-weight: 600;
+      width: -webkit-fill-available;
+      padding: 1rem;
+      .category {
+        vertical-align: super;
+        padding-left: 2rem;
+      }
+      &.active {
+        background-color: #2196f3;
+        color: #fff;
+        &:hover {
+          background-color: #2196f3;
+        }
+      }
+      &:hover {
+        background-color: #f0f0f0;
+      }
+    }
+
+    .search-bar {
+      position: relative;
+      text-align: left;
+      width: 100%;
+      .search-icon {
+        padding: 2px;
+        height: 100%;
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .search-field {
+        color: #fff;
+        width: 70%;
+        padding-left: 2.5rem;
+        font-weight: 300;
+        font-size: x-large;
+        font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+        background-color: transparent;
+        border-radius: 1rem;
+        &::placeholder {
+          color: #fff;
+        }
+        &:focus {
+          border: transparent;
+        }
+      }
+    }
+
+    #card-container {
+      padding: 0;
+      margin: 0;
+      list-style: none;
+
+      display: -webkit-box;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+
+      // justify-content: space-around;
+
+      .movie-list {
+        position: relative;
+        color: #fff;
+
+        .footer {
+          background-color: rgba(0, 0, 0, 0.7);
+          z-index: 3;
+          position: absolute;
+          top: 96%;
+          width: 100%;
+          height: 1.4rem;
+          font-weight: 700;
+
+          .bottom-left {
+            position: absolute;
+            // top: 93%;
+            left: 0.5rem;
+          }
+
+          .bottom-right {
+            position: absolute;
+            // top: 93%;
+            right: 0.5rem;
+            vertical-align: sub;
+            .rating {
+              vertical-align: top;
+            }
+          }
+        }
+      }
+    }
+
+    .main-compartiment {
+      margin-left: 14rem;
+      margin-top: 4.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      .no_results {
+        height: 100%;
+        width: 100%;
+        display: block;
+        text-align: center;
+      }
+    }
+  }
+}
