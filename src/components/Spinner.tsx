@@ -1,12 +1,9 @@
 import React from 'react';
-import { connect, useSelector } from 'react-redux';
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
-import { State } from '../redux/reducers/root-reducer';
+import { SpinnerProps } from '../types';
 
-const Spinner = () => {
-  const spinner = useSelector((state: State) => state.movies.loaded);
-  console.log(spinner);
+const Spinner = ({loaded}: SpinnerProps) => {
 
   return (
     <Box
@@ -15,17 +12,11 @@ const Spinner = () => {
         width: '100%',
         height: '100%',
         justifyContent: 'center',
-
-        // margin: 'auto auto',
       }}
     >
-      {spinner === false && <CircularProgress />}
+      {loaded === false && <CircularProgress />}
     </Box>
   );
 };
 
-const mapStateToProps = (state: State) => ({
-  loaded: state.movies.loaded,
-});
-
-export default connect(mapStateToProps)(Spinner);
+export default Spinner;

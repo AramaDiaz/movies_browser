@@ -1,15 +1,15 @@
-import { Dispatch } from 'redux';
-import { Genre, Movie } from '../../types';
+import { Dispatch } from "redux";
+import { Genre, Movie } from "../../types";
 import {
   ActionType,
   FetchMovies,
   MoviesGenres,
   SortMovie,
-} from '../types_redux';
+} from "../types_redux";
 
 const getData =
   (searchTerm: string, pageNo: number) => (dispatch: Dispatch<FetchMovies>) => {
-    if (searchTerm === undefined || '') {
+    if (searchTerm === undefined || "") {
       fetch(
         `${process.env.REACT_APP_TMDB_URL}/trending/movie/week?api_key=${process.env.REACT_APP_API_KEY}&page=${pageNo}&include_adult=false`
       )
@@ -48,7 +48,7 @@ const getData =
               total_pages: resp.total_pages,
             },
           });
-          console.log(resp);
+          // console.log(resp);
           return resp.results;
         })
         .catch((err) => {
@@ -164,7 +164,7 @@ export const sortMovies = (
           return id === gen.id && gen.name;
         })
         .map((genEntry) => genEntry.name)
-        .join(', ')
+        .join(", ")
         .toLocaleLowerCase();
     });
     // console.log(sortGenre, genTitles);

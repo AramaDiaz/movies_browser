@@ -1,10 +1,10 @@
-import { combineReducers } from 'redux';
-import genreReducer from './genre.reducer';
-import searchReducer from './search.reducer';
-import movieReducer from './movie.reducer';
-import dataMoviesReducer from './movies.reducer';
-import tvShowReducer from './tvShow.reducer';
-import dataTvShowsReducer from './tvShows.reducer';
+import { combineReducers } from "redux";
+import genreReducer from "./genre.reducer";
+import searchReducer from "./search.reducer";
+import movieReducer from "./movie.reducer";
+import dataMoviesReducer from "./movies.reducer";
+import tvShowReducer from "./tvShow.reducer";
+import dataTvShowsReducer from "./tvShows.reducer";
 
 const rootReducer = combineReducers({
   search: searchReducer,

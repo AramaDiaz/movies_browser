@@ -1,16 +1,16 @@
-import React, { Suspense, useEffect } from 'react';
-import { Box, Button, ModalUnstyled, Rating, Stack } from '@mui/material';
-import { useParams } from 'react-router-dom';
-import { connect, useDispatch, useSelector } from 'react-redux';
-import { State } from '../redux/reducers/root-reducer';
-import { Details, Genre } from '../types';
-import AccessTimeIcon from '@mui/icons-material/AccessTime';
-import HistoryIcon from '@mui/icons-material/History';
-import StarIcon from '@mui/icons-material/Star';
-import getMovie from '../redux/actions/movie.actions';
-import BackButton from '../components/BackButton';
-import '../styles/MoviePage.scss';
-import Spinner from '../components/Spinner';
+import React, { Suspense, useEffect } from "react";
+import { Box, Button, ModalUnstyled, Rating, Stack } from "@mui/material";
+import { useParams } from "react-router-dom";
+import { connect, useDispatch, useSelector } from "react-redux";
+import { State } from "../redux/reducers/root-reducer";
+import { Details, Genre } from "../types";
+import AccessTimeIcon from "@mui/icons-material/AccessTime";
+import HistoryIcon from "@mui/icons-material/History";
+import StarIcon from "@mui/icons-material/Star";
+import getMovie from "../redux/actions/movie.actions";
+import BackButton from "../components/BackButton";
+import "../styles/MoviePage.scss";
+import Spinner from "../components/Spinner";
 
 const MoviePage = () => {
   const dispatch = useDispatch();
@@ -21,11 +21,13 @@ const MoviePage = () => {
     dispatch(getMovie(movieId));
   }, [dispatch, movieId]);
 
-  const base_url_for_backdrop = 'https://image.tmdb.org/t/p/w500';
-  const base_url_for_poster = 'https://image.tmdb.org/t/p/w185';
+  const base_url_for_backdrop = "https://image.tmdb.org/t/p/w500";
+  const base_url_for_poster = "https://image.tmdb.org/t/p/w185";
 
-  const movie: Details = useSelector((state: State) => state.movie.movie);
-  const fetched = useSelector((state: State) => state.movie.fetched);
+  const { movie, fetched }: { movie: Details; fetched: boolean } = useSelector(
+    (state: State) => state.movie
+  );
+
   const {
     title,
     backdrop_path,
@@ -37,42 +39,42 @@ const MoviePage = () => {
   } = movie;
 
   return (
-    <Suspense fallback={<Spinner />}>
-      <ModalUnstyled className='movie-page' open={true}>
-        <div style={{ maxHeight: 'fit-content' }}>
+    <Suspense fallback={<Spinner loaded={fetched} />}>
+      <ModalUnstyled className="movie-page" open={true}>
+        <div style={{ maxHeight: "fit-content" }}>
           {fetched && (
             <Box
-              className='container'
+              className="container"
               sx={{
                 backgroundImage: `url(${
                   backdrop_path !== null
                     ? base_url_for_backdrop + backdrop_path
                     : poster_path !== null
                     ? base_url_for_poster + poster_path
-                    : 'https://harriesopticians.com/wp-content/uploads/sites/30/2018/07/placeholder-coming-soon.jpg'
+                    : "https://harriesopticians.com/wp-content/uploads/sites/30/2018/07/placeholder-coming-soon.jpg"
                 })`,
-                backgroundRepeat: 'no-repeat',
-                backgroundSize: 'cover',
-                backgroundPositionY: '40%',
+                backgroundRepeat: "no-repeat",
+                backgroundSize: "cover",
+                backgroundPositionY: "40%",
               }}
             >
               <Box
-                className='inside-box'
+                className="inside-box"
                 sx={{
-                  position: 'fixed',
+                  position: "fixed",
                   top: 0,
-                  width: '100%',
-                  height: '100%',
-                  backgroundColor: 'rgba(0, 0, 0, 0.3)',
+                  width: "100%",
+                  height: "100%",
+                  backgroundColor: "rgba(0, 0, 0, 0.3)",
                 }}
               >
-                <div className='group'>
+                <div className="group">
                   <div
-                    className='title_and_rating'
+                    className="title_and_rating"
                     style={{
-                      display: 'flex',
-                      flexDirection: 'row',
-                      alignItems: 'center',
+                      display: "flex",
+                      flexDirection: "row",
+                      alignItems: "center",
                     }}
                   >
                     <h2>{movie.title} </h2>
@@ -83,16 +85,16 @@ const MoviePage = () => {
                         max={5}
                         emptyIcon={
                           <StarIcon
-                            style={{ opacity: 1, color: '#fff' }}
-                            fontSize='inherit'
+                            style={{ opacity: 1, color: "#fff" }}
+                            fontSize="inherit"
                           />
                         }
                         readOnly
                       />
                     </Stack>
                   </div>
-                  <div className='img-and-inf'>
-                    <div className='image'>
+                  <div className="img-and-inf">
+                    <div className="image">
                       <img
                         src={
                           poster_path !== null
@@ -103,33 +105,33 @@ const MoviePage = () => {
                       />
                     </div>
 
-                    <div className='info'>
-                      <h3 className='tagline'>{tagline}</h3>
-                      <div className='about'>{overview}</div>
+                    <div className="info">
+                      <h3 className="tagline">{tagline}</h3>
+                      <div className="about">{overview}</div>
                     </div>
                   </div>
-                  <div className='details'>
-                    <div className='genres'>
-                      <strong className='strong'>Genre: </strong>
+                  <div className="details">
+                    <div className="genres">
+                      <strong className="strong">Genre: </strong>
                       {movie.genres.map((gen: Genre) => {
                         return (
-                          <Button className='genre' key={gen.id}>
+                          <Button className="genre" key={gen.id}>
                             {gen.name}
                           </Button>
                         );
                       })}
                     </div>
-                    <div className='duration'>
+                    <div className="duration">
                       <AccessTimeIcon />
-                      <strong className='strong'>Released: </strong>
-                      <div className='release_and_duration'>
+                      <strong className="strong">Released: </strong>
+                      <div className="release_and_duration">
                         {` ${release_date}`}
                       </div>
                     </div>
-                    <div className='duration'>
+                    <div className="duration">
                       <HistoryIcon />
-                      <strong className='strong'>Duration: </strong>
-                      <div className='release_and_duration'>
+                      <strong className="strong">Duration: </strong>
+                      <div className="release_and_duration">
                         {runtime} minutes
                       </div>
                     </div>

@@ -44,13 +44,14 @@ html {
       }
       .search-field {
         color: #fff;
-        width: 70%;
+        width: 50%;
         padding-left: 2.5rem;
         font-weight: 300;
         font-size: x-large;
-        font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+        font-family: "Segoe UI", Tahoma, Verdana, sans-serif;
         background-color: transparent;
-        border-radius: 1rem;
+        outline: none;
+        border: none;
         &::placeholder {
           color: #fff;
         }
@@ -58,25 +59,28 @@ html {
           border: transparent;
         }
       }
+      .x-button {
+        background-color: transparent;
+        border: none;
+        color: #fff;
+        font-size: xx-large;
+        vertical-align: top;
+      }
     }
 
     #card-container {
       padding: 0;
       margin: 0;
       list-style: none;
-
       display: -webkit-box;
       display: -moz-box;
       display: -ms-flexbox;
       display: -webkit-flex;
       display: flex;
 
-      // justify-content: space-around;
-
       .movie-list {
         position: relative;
         color: #fff;
-
         .footer {
           background-color: rgba(0, 0, 0, 0.7);
           z-index: 3;
@@ -85,13 +89,11 @@ html {
           width: 100%;
           height: 1.4rem;
           font-weight: 700;
-
           .bottom-left {
             position: absolute;
             // top: 93%;
             left: 0.5rem;
           }
-
           .bottom-right {
             position: absolute;
             // top: 93%;

@@ -1,11 +1,11 @@
-import { Dispatch } from 'redux';
-import { Genre, TvShow } from '../../types';
+import { Dispatch } from "redux";
+import { Genre, TvShow } from "../../types";
 import {
   ActionType,
   FetchTvShows,
   ShowsGenres,
   SortShows,
-} from '../types_redux';
+} from "../types_redux";
 
 const getDataTv =
   (searchTerm: string, pageNo: number) =>
@@ -27,7 +27,7 @@ const getDataTv =
               total_pages: resp.total_pages,
             },
           });
-          // console.log('7. received ', resp);
+          // console.log("7. received ", resp);
           return resp;
         })
         .catch((err) => {
@@ -46,11 +46,11 @@ const getDataTv =
             payload: {
               tvShows: resp.results,
               loaded: true,
-              page: resp.page,
+              page: 1,
               total_pages: resp.total_pages,
             },
           });
-          console.log('7. received ', resp);
+          // console.log("9. received ", resp);
           return resp;
         })
         .catch((err) => {
@@ -90,7 +90,7 @@ export const sortTvShows = (
           return id === gen.id && gen.name;
         })
         .map((genEntry) => genEntry.name)
-        .join(', ')
+        .join(", ")
         .toLocaleLowerCase();
     });
     // console.log(sortGenre, genTitles);

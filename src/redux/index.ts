@@ -1,8 +1,10 @@
-import { Details, TvShowDetails } from '../types';
-import { State } from './types_redux';
+import { Details, TvShowDetails } from "../types";
+import { State } from "./types_redux";
 
 export const INITIAL_STATE: State = {
-  searchTerm: '',
+  search: {
+    searchTerm: "",
+  },
   genres: {
     genres: [],
   },

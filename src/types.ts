@@ -1,3 +1,11 @@
+export interface InputInterface {
+  input: string;
+  type: string;
+  placeholder: string;
+  id: string;
+  meta: { touched: boolean; error: string };
+}
+
 export type resp = {
   page?: number;
   results: Movie[];
@@ -14,7 +22,7 @@ export type Movie = {
   overview: string;
   popularity: number;
   poster_path: string;
-  release_date: string;
+  release_date?: string;
   title: string;
   video: boolean;
   vote_average: number;
@@ -23,7 +31,7 @@ export type Movie = {
 
 export type TvShow = {
   backdrop_path: string;
-  first_air_date: string;
+  first_air_date?: string;
   genre_ids: number[];
   id: number;
   media_type: string;
@@ -37,6 +45,10 @@ export type TvShow = {
   vote_average: number;
   vote_count: number;
 };
+
+export interface SpinnerProps {
+  loaded: boolean;
+}
 
 export interface MovieItemProps {
   path: string;
