@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect } from 'react';
 import {
   Box,
   Button,
@@ -6,17 +6,18 @@ import {
   Rating,
   Stack,
   Tooltip,
-} from "@mui/material";
-import { useParams } from "react-router-dom";
-import { connect, useDispatch, useSelector } from "react-redux";
-import { State } from "../redux/reducers/root-reducer";
-import { Genre, TvShowDetails } from "../types";
-import AccessTimeIcon from "@mui/icons-material/AccessTime";
-import HistoryIcon from "@mui/icons-material/History";
-import StarIcon from "@mui/icons-material/Star";
-import getTvShow from "../redux/actions/tvShow.actions";
-import BackButton from "../components/BackButton";
-import "../styles/MoviePage.scss";
+} from '@mui/material';
+import { useParams } from 'react-router-dom';
+import { connect, useDispatch, useSelector } from 'react-redux';
+import { State } from '../redux/reducers/root-reducer';
+import { Genre, TvShowDetails } from '../types';
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import HistoryIcon from '@mui/icons-material/History';
+import StarIcon from '@mui/icons-material/Star';
+import getTvShow from '../redux/actions/tvShow.actions';
+import BackButton from '../components/BackButton';
+import '../styles/MoviePage.scss';
+import PopOver from '../components/PopOver';
 
 const TvShowPage = () => {
   const dispatch = useDispatch();
@@ -44,43 +45,43 @@ const TvShowPage = () => {
     vote_average,
   } = tvShow;
 
-  const base_url_for_backdrop = "https://image.tmdb.org/t/p/w500";
-  const base_url_for_poster = "https://image.tmdb.org/t/p/w185";
+  const base_url_for_backdrop = 'https://image.tmdb.org/t/p/w500';
+  const base_url_for_poster = 'https://image.tmdb.org/t/p/w185';
 
   return (
-    <ModalUnstyled className="movie-page" open={true}>
-      <div>
+    <ModalUnstyled className='movie-page' open={true}>
+      <div style={{ maxHeight: 'fit-content' }}>
         {fetched && (
           <Box
-            className="container"
+            className='container'
             sx={{
               backgroundImage: `url(${
                 backdrop_path !== null
                   ? base_url_for_backdrop + backdrop_path
                   : base_url_for_poster + poster_path
               })`,
-              backgroundRepeat: "no-repeat",
-              backgroundSize: "cover",
-              backgroundPositionY: "40%",
+              backgroundRepeat: 'no-repeat',
+              backgroundSize: 'cover',
+              backgroundPositionY: '40%',
             }}
           >
             <Box
-              className="inside-box"
+              className='inside-box'
               sx={{
-                position: "fixed",
+                position: 'fixed',
                 top: 0,
-                width: "100%",
-                height: "100%",
-                backgroundColor: "rgba(0, 0, 0, 0.3)",
+                width: '100%',
+                height: '100%',
+                backgroundColor: 'rgba(0, 0, 0, 0.3)',
               }}
             >
-              <div className="group">
+              <div className='group'>
                 <div
-                  className="title_and_rating"
+                  className='title_and_rating'
                   style={{
-                    display: "flex",
-                    flexDirection: "row",
-                    alignItems: "center",
+                    display: 'flex',
+                    flexDirection: 'row',
+                    alignItems: 'center',
                   }}
                 >
                   <h2>{name} </h2>
@@ -91,16 +92,16 @@ const TvShowPage = () => {
                       max={5}
                       emptyIcon={
                         <StarIcon
-                          style={{ opacity: 1, color: "#fff" }}
-                          fontSize="inherit"
+                          style={{ opacity: 1, color: '#fff' }}
+                          fontSize='inherit'
                         />
                       }
                       readOnly
                     />
                   </Stack>
                 </div>
-                <div className="img-and-inf">
-                  <div className="image">
+                <div className='img-and-inf'>
+                  <div className='image'>
                     <img
                       src={
                         poster_path !== null
@@ -111,51 +112,41 @@ const TvShowPage = () => {
                     />
                   </div>
 
-                  <div className="info">
-                    <h3 className="tagline">{tagline}</h3>
-                    <div className="about">{overview}</div>
-                    <div className="no-of-seasons">
+                  <div className='info'>
+                    <h3 className='tagline'>{tagline}</h3>
+                    <div className='about'>{overview}</div>
+                    <div className='no-of-seasons'>
                       Seasons: {number_of_seasons}
                     </div>
-                    <div className="seasons">
+                    <div className='seasons'>
                       {seasons.map((season, index) => {
-                        while (index <= 10) {
-                          return (
-                            <Tooltip
-                              key={season.id}
-                              title={`${season.episode_count} episodes`}
-                            >
-                              <Button className="season">{season.name}</Button>
-                            </Tooltip>
-                          );
-                        }
-                        return index;
+                        return <PopOver key={index} season={season} />;
                       })}
                     </div>
                   </div>
                 </div>
-                <div className="details">
-                  <div className="genres">
-                    <strong className="strong">Genre: </strong>
+                <div className='details'>
+                  <div className='genres'>
+                    <strong className='strong'>Genre: </strong>
                     {genres.map((gen: Genre) => {
                       return (
-                        <Button className="genre" key={gen.id}>
+                        <Button className='genre' key={gen.id}>
                           {gen.name}
                         </Button>
                       );
                     })}
                   </div>
-                  <div className="duration">
+                  <div className='duration'>
                     <AccessTimeIcon />
-                    <strong className="strong">Released: </strong>
-                    <div className="release_and_duration">
+                    <strong className='strong'>Released: </strong>
+                    <div className='release_and_duration'>
                       {` ${first_air_date}`}
                     </div>
                   </div>
-                  <div className="duration">
+                  <div className='duration'>
                     <HistoryIcon />
-                    <strong className="strong">Duration: </strong>
-                    <div className="release_and_duration">
+                    <strong className='strong'>Duration: </strong>
+                    <div className='release_and_duration'>
                       {episode_run_time[0]} minutes
                     </div>
                   </div>

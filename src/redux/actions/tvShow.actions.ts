@@ -16,7 +16,7 @@ const getTvShow = (id: string) => (dispatch: Dispatch<GetTv>) => {
           fetched: true,
         },
       });
-      console.log('15. received ', res);
+      // console.log('15. received ', res);
       return res;
     })
     .catch((err) => {

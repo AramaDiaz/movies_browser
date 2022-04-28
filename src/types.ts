@@ -53,18 +53,20 @@ export interface SpinnerProps {
 export interface MovieItemProps {
   path: string;
   entry: Movie;
-  pageNo: number;
 }
 
 export interface TvItemProps {
   path: string;
   entry: TvShow;
-  pageNo: number;
 }
 
 export interface PaginationProps {
   pageNo: number;
   total_pages: number;
+}
+
+export interface TooltipProps {
+  season: Season;
 }
 
 export type Details = {

@@ -7,6 +7,7 @@ import { clearSelect, setGenres } from '../redux/actions/genre.actions';
 import { bindActionCreators } from 'redux';
 import { State } from '../redux/reducers/root-reducer';
 import { OutlinedInput } from '@mui/material';
+import { useLocation } from 'react-router-dom';
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -19,24 +20,44 @@ const MenuProps = {
   },
 };
 
-const genres = [
+const movieGenres = [
   'action',
   'adventure',
-  'action & adventure',
   'animation',
-  'biography',
   'comedy',
   'crime',
   'documentary',
   'drama',
+  'family',
   'fantasy',
+  'history',
   'horror',
-  'romance',
-  'musical',
+  'music',
   'mystery',
+  'romance',
   'science fiction',
-  'sci-fi & fantasy',
   'thriller',
+  'war',
+  'western',
+];
+
+const tvGenres = [
+  'action & adventure',
+  'animation',
+  'comedy',
+  'crime',
+  'documentary',
+  'drama',
+  'family',
+  'kids',
+  'mistery',
+  'news',
+  'reality',
+  'sci-fi & fantasy',
+  'soap',
+  'talk',
+  'war & politics',
+  'western',
 ];
 
 const Genres = () => {
@@ -44,7 +65,15 @@ const Genres = () => {
   const handleOpen = () => {
     setOpen(true);
   };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   const list: string[] = [];
+
+  const location = useLocation().pathname;
+
   const dispatch = useDispatch();
   bindActionCreators(setGenres, dispatch);
   const genreList = useSelector((state: State) => state.genres);
@@ -95,13 +124,19 @@ const Genres = () => {
           <MenuItem disabled value=''>
             <em>Genre</em>
           </MenuItem>
-          {genres.map((gen) => (
-            <MenuItem key={gen} value={gen}>
-              {gen}
-            </MenuItem>
-          ))}
+          {location === '/tv_shows'
+            ? tvGenres.map((gen) => (
+                <MenuItem key={gen} value={gen}>
+                  {gen}
+                </MenuItem>
+              ))
+            : movieGenres.map((gen) => (
+                <MenuItem key={gen} value={gen}>
+                  {gen}
+                </MenuItem>
+              ))}
         </Select>
-        <button onClick={handleClick}>X</button>
+        <button onClick={handleClick}>&times;</button>
       </FormControl>
     </div>
   );

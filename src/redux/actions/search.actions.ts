@@ -1,5 +1,5 @@
-import { Dispatch } from "redux";
-import { ActionType, Search } from "../types_redux";
+import { Dispatch } from 'redux';
+import { ActionType, Search } from '../types_redux';
 
 export const setCurrentSearch = (searchTerm: string) => {
   return (dispatch: Dispatch<Search>) => {

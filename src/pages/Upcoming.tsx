@@ -50,18 +50,13 @@ function Upcoming() {
           ) : (
             moviesList.map((entry: Movie) => {
               return (
-                <MovieItem
-                  pageNo={page}
-                  path={`/upcoming`}
-                  key={entry.id}
-                  entry={entry}
-                />
+                <MovieItem path={`/upcoming`} key={entry.id} entry={entry} />
               );
             })
           )}
         </Grid>
       ) : (
-        <Spinner loaded={loaded}/>
+        <Spinner loaded={loaded} />
       )}
       <Outlet />
       <AppPagination pageNo={page} total_pages={total_pages} />

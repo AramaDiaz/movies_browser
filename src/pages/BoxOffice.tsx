@@ -50,12 +50,7 @@ const BoxOffice = () => {
           ) : (
             moviesList.map((entry: Movie) => {
               return (
-                <MovieItem
-                  pageNo={page}
-                  path={'/box_office'}
-                  key={entry.id}
-                  entry={entry}
-                />
+                <MovieItem path={'/box_office'} key={entry.id} entry={entry} />
               );
             })
           )}

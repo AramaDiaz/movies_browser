@@ -1,8 +1,11 @@
-import { Details, Genre, Movie, TvShow, TvShowDetails } from "../types";
+import { Details, Genre, Movie, TvShow, TvShowDetails } from '../types';
 
 export type State = {
   search: {
     searchTerm: string;
+  };
+  page: {
+    pageNo: number;
   };
   genres: {
     genres: string[];
@@ -32,24 +35,25 @@ export type State = {
 };
 
 export enum ActionType {
-  SET_SEARCH_TERM = "SET_SEARCH_TERM",
-  GET_GENRE = "GET_GENRE",
-  LOADING = "LOADING",
-  RECEIVED = "RECEIVED",
-  RECEIVED_TV = "RECEIVED_TV",
-  GOT_MOVIE = "GOT_MOVIE",
-  GOT_TV = "GOT_TV",
-  TRENDING = "TRENDING",
-  TRENDING_TV = "TRENDING_TV",
-  UPCOMING = "UPCOMING",
-  NOW_PLAYING = "NOW_PLAYING",
-  BOX_OFFICE = "BOX_OFFICE",
-  CLEAR_SEARCH = "CLEAR_SEARCH",
-  MOVIES_GENRES = "MOVIE_GENRES",
-  SORT_MOVIES = "SORT_MOVIES",
-  SHOWS_GENRES = "SHOWS_GENRES",
-  SORT_SHOWS = "SORT_SHOWS",
-  CLEAR_SELECT = "CLEAR_SELECT",
+  SET_SEARCH_TERM = 'SET_SEARCH_TERM',
+  GET_GENRE = 'GET_GENRE',
+  LOADING = 'LOADING',
+  RECEIVED = 'RECEIVED',
+  RECEIVED_TV = 'RECEIVED_TV',
+  GOT_MOVIE = 'GOT_MOVIE',
+  GOT_TV = 'GOT_TV',
+  TRENDING = 'TRENDING',
+  TRENDING_TV = 'TRENDING_TV',
+  UPCOMING = 'UPCOMING',
+  NOW_PLAYING = 'NOW_PLAYING',
+  BOX_OFFICE = 'BOX_OFFICE',
+  CLEAR_SEARCH = 'CLEAR_SEARCH',
+  MOVIES_GENRES = 'MOVIE_GENRES',
+  SORT_MOVIES = 'SORT_MOVIES',
+  SHOWS_GENRES = 'SHOWS_GENRES',
+  SORT_SHOWS = 'SORT_SHOWS',
+  CLEAR_SELECT = 'CLEAR_SELECT',
+  RESET_PAGE_NO = 'RESET_PAGE_NO',
 }
 
 export interface SearchAction {
@@ -57,6 +61,12 @@ export interface SearchAction {
   payload?: { searchTerm: string };
 }
 export type Search = SearchAction;
+
+export interface ResetAction {
+  type: ActionType.RESET_PAGE_NO;
+  payload: { pageNo: number };
+}
+export type ResetPage = ResetAction;
 
 export interface GenreAction {
   type: ActionType.GET_GENRE | ActionType.CLEAR_SELECT;

@@ -48,7 +48,7 @@ html {
         padding-left: 2.5rem;
         font-weight: 300;
         font-size: x-large;
-        font-family: "Segoe UI", Tahoma, Verdana, sans-serif;
+        font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
         background-color: transparent;
         outline: none;
         border: none;
@@ -72,36 +72,26 @@ html {
       padding: 0;
       margin: 0;
       list-style: none;
-      display: -webkit-box;
-      display: -moz-box;
-      display: -ms-flexbox;
-      display: -webkit-flex;
-      display: flex;
 
       .movie-list {
         position: relative;
         color: #fff;
-        .footer {
-          background-color: rgba(0, 0, 0, 0.7);
-          z-index: 3;
-          position: absolute;
-          top: 96%;
-          width: 100%;
-          height: 1.4rem;
-          font-weight: 700;
-          .bottom-left {
-            position: absolute;
-            // top: 93%;
-            left: 0.5rem;
+        .MuiImageListItemBar-root {
+          background: rgba(0, 0, 0, 0.65);
+          .css-dasnyc-MuiImageListItemBar-title {
+            line-height: 20px;
+
+            text-align: left;
           }
-          .bottom-right {
-            position: absolute;
-            // top: 93%;
-            right: 0.5rem;
-            vertical-align: sub;
-            .rating {
-              vertical-align: top;
-            }
+          .css-dqr9h-MuiRating-label {
+            color: orange;
+          }
+        }
+        .bottom-right {
+          padding-right: 12px;
+          padding-top: 1px;
+          .rating {
+            vertical-align: top;
           }
         }
       }

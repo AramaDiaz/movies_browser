@@ -50,18 +50,13 @@ const Theaters = () => {
           ) : (
             moviesList.map((entry: Movie) => {
               return (
-                <MovieItem
-                  pageNo={page}
-                  path={'/in_theaters'}
-                  key={entry.id}
-                  entry={entry}
-                />
+                <MovieItem path={'/in_theaters'} key={entry.id} entry={entry} />
               );
             })
           )}
         </Grid>
       ) : (
-        <Spinner loaded={loaded}/>
+        <Spinner loaded={loaded} />
       )}
       <Outlet />
       <AppPagination pageNo={page} total_pages={total_pages} />
