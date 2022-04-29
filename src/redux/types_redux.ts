@@ -4,9 +4,6 @@ export type State = {
   search: {
     searchTerm: string;
   };
-  page: {
-    pageNo: number;
-  };
   genres: {
     genres: string[];
   };

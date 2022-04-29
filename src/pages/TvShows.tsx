@@ -21,7 +21,7 @@ const TvShows = () => {
 
   const dispatch = useDispatch();
 
-  const { tvShows, loaded, genres, page, total_pages } = useSelector(
+  const { tvShows, loaded, genres, total_pages } = useSelector(
     (state: State) => state.tvShows
   );
   const search: string = useSelector((state: State) => state.search.searchTerm);
@@ -58,7 +58,7 @@ const TvShows = () => {
         <Spinner loaded={loaded} />
       )}
       <Outlet />
-      <AppPagination pageNo={page} total_pages={total_pages} />
+      <AppPagination total_pages={total_pages} />
     </div>
   );
 };

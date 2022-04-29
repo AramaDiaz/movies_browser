@@ -1,12 +1,5 @@
 import React, { useEffect } from 'react';
-import {
-  Box,
-  Button,
-  ModalUnstyled,
-  Rating,
-  Stack,
-  Tooltip,
-} from '@mui/material';
+import { Box, Button, ModalUnstyled, Rating, Stack } from '@mui/material';
 import { useParams } from 'react-router-dom';
 import { connect, useDispatch, useSelector } from 'react-redux';
 import { State } from '../redux/reducers/root-reducer';
@@ -49,7 +42,7 @@ const TvShowPage = () => {
   const base_url_for_poster = 'https://image.tmdb.org/t/p/w185';
 
   return (
-    <ModalUnstyled className='movie-page' open={true}>
+    <ModalUnstyled open={true} className='movie-page'>
       <div style={{ maxHeight: 'fit-content' }}>
         {fetched && (
           <Box
@@ -72,7 +65,7 @@ const TvShowPage = () => {
                 top: 0,
                 width: '100%',
                 height: '100%',
-                backgroundColor: 'rgba(0, 0, 0, 0.3)',
+                backgroundColor: 'rgba(0, 0, 0,  0.3)',
               }}
             >
               <div className='group'>
@@ -115,19 +108,25 @@ const TvShowPage = () => {
                   <div className='info'>
                     <h3 className='tagline'>{tagline}</h3>
                     <div className='about'>{overview}</div>
-                    <div className='no-of-seasons'>
-                      Seasons: {number_of_seasons}
-                    </div>
-                    <div className='seasons'>
-                      {seasons.map((season, index) => {
-                        return <PopOver key={index} season={season} />;
-                      })}
-                    </div>
+                    {number_of_seasons > 0 && (
+                      <div className='no-of-seasons'>
+                        Seasons: {number_of_seasons}
+                      </div>
+                    )}
+                    {seasons && (
+                      <div className='seasons'>
+                        {seasons.map((season, index) => {
+                          return <PopOver key={index} season={season} />;
+                        })}
+                      </div>
+                    )}
                   </div>
                 </div>
                 <div className='details'>
                   <div className='genres'>
-                    <strong className='strong'>Genre: </strong>
+                    {genres.length > 0 && (
+                      <strong className='strong'>Genre: </strong>
+                    )}
                     {genres.map((gen: Genre) => {
                       return (
                         <Button className='genre' key={gen.id}>
@@ -136,20 +135,25 @@ const TvShowPage = () => {
                       );
                     })}
                   </div>
-                  <div className='duration'>
-                    <AccessTimeIcon />
-                    <strong className='strong'>Released: </strong>
-                    <div className='release_and_duration'>
-                      {` ${first_air_date}`}
+
+                  {first_air_date && (
+                    <div className='duration'>
+                      <AccessTimeIcon />
+                      <strong className='strong'>Released: </strong>
+                      <div className='release_and_duration'>
+                        {` ${first_air_date}`}
+                      </div>
                     </div>
-                  </div>
-                  <div className='duration'>
-                    <HistoryIcon />
-                    <strong className='strong'>Duration: </strong>
-                    <div className='release_and_duration'>
-                      {episode_run_time[0]} minutes
+                  )}
+                  {episode_run_time[0] && (
+                    <div className='duration'>
+                      <HistoryIcon />
+                      <strong className='strong'>Duration: </strong>
+                      <div className='release_and_duration'>
+                        {episode_run_time[0]} minutes
+                      </div>
                     </div>
-                  </div>
+                  )}
                 </div>
               </div>
               <BackButton />

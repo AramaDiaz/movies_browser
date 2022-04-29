@@ -5,9 +5,6 @@ export const INITIAL_STATE: State = {
   search: {
     searchTerm: '',
   },
-  page: {
-    pageNo: 1,
-  },
   genres: {
     genres: [],
   },

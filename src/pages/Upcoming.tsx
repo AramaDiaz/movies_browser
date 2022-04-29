@@ -5,7 +5,7 @@ import MovieItem from '../components/MovieItem';
 import Spinner from '../components/Spinner';
 import { Grid } from '@mui/material';
 import { State } from '../redux/reducers/root-reducer';
-import { Genre, Movie } from '../types';
+import { Movie } from '../types';
 import { getUpcoming, sortMovies } from '../redux/actions/movies.actions';
 import NoResults from '../components/NoResults';
 import AppPagination from '../components/AppPagination';
@@ -16,18 +16,11 @@ function Upcoming() {
   const pageNo = parseInt(query.get('page') || '1');
 
   const dispatch = useDispatch();
-  const moviesList: Movie[] = useSelector(
-    (state: State) => state.movies.movies
+
+  const { movies, loaded, genres, total_pages } = useSelector(
+    (state: State) => state.movies
   );
-  const loaded: boolean = useSelector((state: State) => state.movies.loaded);
   const gensArr: string[] = useSelector((state: State) => state.genres.genres);
-  const moviesTypes: Genre[] = useSelector(
-    (state: State) => state.movies.genres
-  );
-  const page = useSelector((state: State) => state.movies.page);
-  const total_pages: number = useSelector(
-    (state: State) => state.movies.total_pages
-  );
 
   useEffect(() => {
     dispatch(getUpcoming(pageNo));
@@ -35,7 +28,7 @@ function Upcoming() {
 
   useEffect(() => {
     if (gensArr.length !== 0) {
-      dispatch(sortMovies(gensArr, moviesList, moviesTypes));
+      dispatch(sortMovies(gensArr, movies, genres));
     } else {
       dispatch(getUpcoming(pageNo));
     }
@@ -45,10 +38,10 @@ function Upcoming() {
     <div className='main-compartiment'>
       {loaded ? (
         <Grid container id='card-container'>
-          {moviesList.length === 0 ? (
+          {movies.length === 0 ? (
             <NoResults />
           ) : (
-            moviesList.map((entry: Movie) => {
+            movies.map((entry: Movie) => {
               return (
                 <MovieItem path={`/upcoming`} key={entry.id} entry={entry} />
               );
@@ -59,7 +52,7 @@ function Upcoming() {
         <Spinner loaded={loaded} />
       )}
       <Outlet />
-      <AppPagination pageNo={page} total_pages={total_pages} />
+      <AppPagination total_pages={total_pages} />
     </div>
   );
 }

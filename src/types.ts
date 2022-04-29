@@ -61,7 +61,6 @@ export interface TvItemProps {
 }
 
 export interface PaginationProps {
-  pageNo: number;
   total_pages: number;
 }
 

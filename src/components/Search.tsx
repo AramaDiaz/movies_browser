@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import SearchIcon from '@mui/icons-material/Search';
-import { connect, useDispatch, useSelector } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
 import { clearSearch, setCurrentSearch } from '../redux/actions/search.actions';
 import { bindActionCreators } from 'redux';
-import { resetPageNo } from '../redux/actions/page.actions';
-import { State } from '../redux/reducers/root-reducer';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const Search = () => {
   const [text, setText] = useState<string>('');
-  const page: number = useSelector((state: State) => state.page.pageNo);
+
+  const navigate = useNavigate();
+  const location = useLocation().pathname;
 
   const dispatch = useDispatch();
   bindActionCreators(setCurrentSearch, dispatch);
@@ -16,11 +17,16 @@ const Search = () => {
   const handleClose = (e: React.MouseEvent<HTMLButtonElement>) => {
     setText('');
     dispatch(clearSearch());
-    dispatch(resetPageNo(text, page));
+    if (location === '/tv_shows') {
+      navigate('/tv_shows');
+    } else navigate('/');
   };
   const getSearchTerm = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.code === 'Enter') {
       dispatch(setCurrentSearch(e.currentTarget.value));
+      if (location === '/tv_shows') {
+        navigate('/tv_shows');
+      } else navigate('/');
     }
   };
 
@@ -54,5 +60,4 @@ const Search = () => {
 export default connect(null, {
   setCurrentSearch,
   clearSearch,
-  resetPageNo,
 })(Search);

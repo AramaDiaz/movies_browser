@@ -1,9 +1,8 @@
 .movie-page {
   margin: auto 0;
   width: 100%;
-  height: auto;
+  max-height: fit-content;
   overflow: auto;
-
   .container {
     position: fixed;
     z-index: 5;
@@ -21,6 +20,11 @@
       flex-direction: column;
       justify-content: center;
       align-content: center;
+      -ms-overflow-style: none;
+      overflow: none;
+      ::-webkit-scrollbar {
+        display: none;
+      }
 
       .title_and_rating {
         display: block;
@@ -50,6 +54,7 @@
             align-self: center;
             position: relative;
             min-width: 0;
+            text-align: start;
             .tagline {
               margin-top: 0;
               width: fit-content;
@@ -81,8 +86,6 @@
                 flex: none;
                 &:hover {
                   background-color: rgba(212, 191, 191, 0.336);
-                  // transform: scale(1.2);
-                  // overflow: visible;
                 }
               }
             }
@@ -91,14 +94,10 @@
       }
       .details {
         display: flex;
-        // .genres,
-        // .other-info {
-        //   width: 50%;
-        // }
+        text-align: start;
         .genres .duration {
           padding-top: 1rem;
           display: inline-flex;
-          // align-items: center;
         }
         .genre {
           background-color: rgba(233, 221, 221, 0.2);

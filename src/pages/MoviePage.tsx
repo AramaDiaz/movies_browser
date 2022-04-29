@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Box, Button, ModalUnstyled, Rating, Stack } from '@mui/material';
 import { useParams } from 'react-router-dom';
 import { connect, useDispatch, useSelector } from 'react-redux';
@@ -34,13 +34,13 @@ const MoviePage = () => {
     poster_path,
     tagline,
     overview,
+    genres,
     release_date,
     runtime,
   } = movie;
 
   return (
-    // <Suspense fallback={<Spinner loaded={fetched} />}>
-    <div className='movie-page'>
+    <Box className='movie-page'>
       <div style={{ maxHeight: 'fit-content' }}>
         {fetched && (
           <Box
@@ -112,8 +112,8 @@ const MoviePage = () => {
                 </div>
                 <div className='details'>
                   <div className='genres'>
-                    <strong className='strong'>Genre: </strong>
-                    {movie.genres.map((gen: Genre) => {
+                    {genres && <strong className='strong'>Genre: </strong>}
+                    {genres.map((gen: Genre) => {
                       return (
                         <Button className='genre' key={gen.id}>
                           {gen.name}
@@ -122,20 +122,24 @@ const MoviePage = () => {
                     })}
                   </div>
                   <div className='other-info'>
-                    <div className='duration'>
-                      <AccessTimeIcon />
-                      <strong className='strong'>Released: </strong>
-                      <div className='release_and_duration'>
-                        {` ${release_date}`}
+                    {release_date && (
+                      <div className='duration'>
+                        <AccessTimeIcon />
+                        <strong className='strong'>Released: </strong>
+                        <div className='release_and_duration'>
+                          {` ${release_date}`}
+                        </div>
                       </div>
-                    </div>
-                    <div className='duration'>
-                      <HistoryIcon />
-                      <strong className='strong'>Duration: </strong>
-                      <div className='release_and_duration'>
-                        {runtime} minutes
+                    )}
+                    {runtime && (
+                      <div className='duration'>
+                        <HistoryIcon />
+                        <strong className='strong'>Duration: </strong>
+                        <div className='release_and_duration'>
+                          {runtime} minutes
+                        </div>
                       </div>
-                    </div>
+                    )}
                   </div>
                 </div>
               </div>
@@ -144,8 +148,7 @@ const MoviePage = () => {
           </Box>
         )}
       </div>
-    </div>
-    // </Suspense>
+    </Box>
   );
 };
 
