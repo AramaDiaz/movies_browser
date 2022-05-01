@@ -4,8 +4,6 @@ import { ActionType } from '../types_redux';
 
 const dataTvShowsReducer: Reducer = (state = INITIAL_STATE.tvShows, action) => {
   switch (action.type) {
-    case ActionType.LOADING:
-      return { ...state };
     case ActionType.RECEIVED_TV:
       return {
         ...state,

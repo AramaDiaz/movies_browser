@@ -61,18 +61,31 @@
             }
             .about {
               height: auto;
-              width: fill-available;
+              width: stretch;
               flex-wrap: wrap;
               text-align: justify;
             }
+            .cast {
+              display: flex;
+              flex-wrap: wrap;
+              margin-top: 1.5rem;
+              .cast-item {
+                padding: 0 0.5rem 0.5rem 0;
+                display: flex;
+                flex-direction: column;
+                justify-items: center;
+                align-items: center;
+              }
+            }
             .no-of-seasons {
-              margin-top: 2rem;
+              margin-top: 1.5rem;
             }
             .seasons {
+              margin-top: 0.5rem;
               display: flex;
               flex-direction: row;
               flex-wrap: wrap;
-              max-height: 5rem;
+              max-height: 6rem;
               overflow-y: auto;
               display: flex;
               .popover-button {
@@ -85,7 +98,7 @@
                 font-size: x-small;
                 flex: none;
                 &:hover {
-                  background-color: rgba(212, 191, 191, 0.336);
+                  background-color: rgba(212, 191, 191, 0.35);
                 }
               }
             }
@@ -93,25 +106,27 @@
         }
       }
       .details {
+        margin-top: 1rem;
         display: flex;
         text-align: start;
         .genres .duration {
           padding-top: 1rem;
           display: inline-flex;
         }
-        .genre {
-          background-color: rgba(233, 221, 221, 0.2);
-          color: #fff;
-          cursor: default;
-          border-radius: 2rem;
-          margin-right: 1rem;
-          align-self: flex-start;
+        .genres {
+          margin-right: 2rem;
+          padding-top: 2px;
+          .genre {
+            color: #fff;
+            margin-right: 0.5rem;
+            align-self: flex-start;
+          }
         }
         .duration {
           align-self: center;
           display: inline-flex;
           align-items: center;
-          margin-right: 1rem;
+          margin-right: 2rem;
         }
         .duration > .strong .release_and_duration {
           vertical-align: super;

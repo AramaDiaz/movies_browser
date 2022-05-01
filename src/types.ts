@@ -47,7 +47,7 @@ export type TvShow = {
 };
 
 export interface SpinnerProps {
-  loaded: boolean;
+  loading: boolean;
 }
 
 export interface MovieItemProps {
@@ -68,6 +68,10 @@ export interface TooltipProps {
   season: Season;
 }
 
+export interface CastProps {
+  actor: Actor;
+}
+
 export type Details = {
   adult: boolean;
   backdrop_path: string;
@@ -76,6 +80,9 @@ export type Details = {
     id: number;
     name: string;
     poster_path: string;
+  };
+  credits: {
+    cast: Actor[];
   };
   budget: number;
   genres: Genre[];
@@ -162,6 +169,21 @@ export type TvShowDetails = {
 export type Genre = {
   id: number;
   name: string;
+};
+
+export type Actor = {
+  adult: boolean;
+  cast_id: number;
+  character: string;
+  credit_id: string;
+  gender: number;
+  id: number;
+  known_for_department: string;
+  name: string;
+  order: number;
+  original_name: string;
+  popularity: number;
+  profile_path: string;
 };
 
 export type Season = {

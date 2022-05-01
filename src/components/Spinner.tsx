@@ -1,20 +1,19 @@
 import React from 'react';
-import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 import { SpinnerProps } from '../types';
+import '../styles/Spinner.scss';
 
-const Spinner = ({loaded}: SpinnerProps) => {
-
+const Spinner = ({ loading }: SpinnerProps) => {
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        width: '100%',
-        height: '100%',
-        justifyContent: 'center',
-      }}
-    >
-      {loaded === false && <CircularProgress />}
+    <Box>
+      {loading && (
+        <>
+          <div className='loader loader-1'>
+            <div className='loader-outter'></div>
+            <div className='loader-inner'></div>
+          </div>
+        </>
+      )}
     </Box>
   );
 };

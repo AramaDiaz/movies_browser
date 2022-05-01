@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Box, Button, ModalUnstyled, Rating, Stack } from '@mui/material';
+import { Box, ModalUnstyled, Rating, Stack } from '@mui/material';
 import { useParams } from 'react-router-dom';
 import { connect, useDispatch, useSelector } from 'react-redux';
 import { State } from '../redux/reducers/root-reducer';
@@ -11,6 +11,7 @@ import getTvShow from '../redux/actions/tvShow.actions';
 import BackButton from '../components/BackButton';
 import '../styles/MoviePage.scss';
 import PopOver from '../components/PopOver';
+import Spinner from '../components/Spinner';
 
 const TvShowPage = () => {
   const dispatch = useDispatch();
@@ -44,7 +45,7 @@ const TvShowPage = () => {
   return (
     <ModalUnstyled open={true} className='movie-page'>
       <div style={{ maxHeight: 'fit-content' }}>
-        {fetched && (
+        {fetched ? (
           <Box
             className='container'
             sx={{
@@ -129,9 +130,9 @@ const TvShowPage = () => {
                     )}
                     {genres.map((gen: Genre) => {
                       return (
-                        <Button className='genre' key={gen.id}>
+                        <span className='genre' key={gen.id}>
                           {gen.name}
-                        </Button>
+                        </span>
                       );
                     })}
                   </div>
@@ -159,6 +160,8 @@ const TvShowPage = () => {
               <BackButton />
             </Box>
           </Box>
+        ) : (
+          <Spinner loading={fetched} />
         )}
       </div>
     </ModalUnstyled>

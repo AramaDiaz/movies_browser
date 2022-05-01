@@ -4,8 +4,6 @@ import { ActionType } from '../types_redux';
 
 const movieReducer: Reducer = (state = INITIAL_STATE.movie, action) => {
   switch (action.type) {
-    case ActionType.LOADING:
-      return { ...state };
     case ActionType.GOT_MOVIE:
       return {
         ...state,

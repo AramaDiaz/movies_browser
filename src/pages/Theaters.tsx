@@ -50,7 +50,7 @@ const Theaters = () => {
           )}
         </Grid>
       ) : (
-        <Spinner loaded={loaded} />
+        <Spinner loading={loaded} />
       )}
       <Outlet />
       <AppPagination total_pages={total_pages} />

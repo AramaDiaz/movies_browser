@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { memo, useEffect } from 'react';
 import { connect, useDispatch, useSelector } from 'react-redux';
 import { Outlet, useLocation } from 'react-router-dom';
 import Spinner from '../components/Spinner';
@@ -14,7 +14,7 @@ import getTvShow from '../redux/actions/tvShow.actions';
 import NoResults from '../components/NoResults';
 import AppPagination from '../components/AppPagination';
 
-const TvShows = () => {
+const TvShows = memo(() => {
   const location = useLocation();
   const query = new URLSearchParams(location.search);
   const pageNo = parseInt(query.get('page') || '1');
@@ -45,23 +45,27 @@ const TvShows = () => {
   return (
     <div className='main-compartiment'>
       {loaded ? (
-        <Grid container id='card-container'>
-          {tvShows.length === 0 ? (
-            <NoResults />
-          ) : (
-            tvShows.map((entry: TvShow) => {
-              return <TvItem key={entry.id} entry={entry} path={'/tv_shows'} />;
-            })
-          )}
-        </Grid>
+        <>
+          <Grid container id='card-container'>
+            {tvShows.length === 0 ? (
+              <NoResults />
+            ) : (
+              tvShows.map((entry: TvShow) => {
+                return (
+                  <TvItem key={entry.id} entry={entry} path={'/tv_shows'} />
+                );
+              })
+            )}
+          </Grid>
+          <Outlet />
+          <AppPagination total_pages={total_pages} />
+        </>
       ) : (
-        <Spinner loaded={loaded} />
+        <Spinner loading={loaded} />
       )}
-      <Outlet />
-      <AppPagination total_pages={total_pages} />
     </div>
   );
-};
+});
 
 export default connect(null, {
   getDataTv,

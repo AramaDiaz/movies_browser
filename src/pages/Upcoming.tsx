@@ -37,22 +37,25 @@ function Upcoming() {
   return (
     <div className='main-compartiment'>
       {loaded ? (
-        <Grid container id='card-container'>
-          {movies.length === 0 ? (
-            <NoResults />
-          ) : (
-            movies.map((entry: Movie) => {
-              return (
-                <MovieItem path={`/upcoming`} key={entry.id} entry={entry} />
-              );
-            })
-          )}
-        </Grid>
+        <>
+          <Grid container id='card-container'>
+            {movies.length === 0 ? (
+              <NoResults />
+            ) : (
+              movies.map((entry: Movie) => {
+                return (
+                  <MovieItem path={`/upcoming`} key={entry.id} entry={entry} />
+                );
+              })
+            )}
+          </Grid>
+
+          <Outlet />
+          <AppPagination total_pages={total_pages} />
+        </>
       ) : (
-        <Spinner loaded={loaded} />
+        <Spinner loading={loaded} />
       )}
-      <Outlet />
-      <AppPagination total_pages={total_pages} />
     </div>
   );
 }

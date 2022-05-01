@@ -34,7 +34,6 @@ export type State = {
 export enum ActionType {
   SET_SEARCH_TERM = 'SET_SEARCH_TERM',
   GET_GENRE = 'GET_GENRE',
-  LOADING = 'LOADING',
   RECEIVED = 'RECEIVED',
   RECEIVED_TV = 'RECEIVED_TV',
   GOT_MOVIE = 'GOT_MOVIE',
@@ -50,7 +49,6 @@ export enum ActionType {
   SHOWS_GENRES = 'SHOWS_GENRES',
   SORT_SHOWS = 'SORT_SHOWS',
   CLEAR_SELECT = 'CLEAR_SELECT',
-  RESET_PAGE_NO = 'RESET_PAGE_NO',
 }
 
 export interface SearchAction {
@@ -58,12 +56,6 @@ export interface SearchAction {
   payload?: { searchTerm: string };
 }
 export type Search = SearchAction;
-
-export interface ResetAction {
-  type: ActionType.RESET_PAGE_NO;
-  payload: { pageNo: number };
-}
-export type ResetPage = ResetAction;
 
 export interface GenreAction {
   type: ActionType.GET_GENRE | ActionType.CLEAR_SELECT;

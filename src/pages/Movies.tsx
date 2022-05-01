@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { memo, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { State } from '../redux/reducers/root-reducer';
 import { Movie } from '../types';
@@ -34,7 +34,6 @@ const Movies = () => {
 
   useEffect(() => {
     dispatch(getData(search, pageNo));
-    // search && pageNo !== 1 && navigate('/');
   }, [dispatch, search, pageNo]);
 
   useEffect(() => {
@@ -48,22 +47,25 @@ const Movies = () => {
   return (
     <div className='main-compartiment'>
       {loaded ? (
-        <Grid id='card-container' container>
-          {movies.length === 0 ? (
-            <NoResults />
-          ) : (
-            movies.map((entry: Movie) => {
-              return (
-                <MovieItem path={`/movies`} key={entry.id} entry={entry} />
-              );
-            })
-          )}
-        </Grid>
+        <>
+          <Grid id='card-container' container>
+            {movies.length === 0 ? (
+              <NoResults />
+            ) : (
+              movies.map((entry: Movie) => {
+                return (
+                  <MovieItem path={`/movies`} key={entry.id} entry={entry} />
+                );
+              })
+            )}
+          </Grid>
+
+          <Outlet />
+          <AppPagination total_pages={total_pages} />
+        </>
       ) : (
-        <Spinner loaded={loaded} />
+        <Spinner loading={loaded} />
       )}
-      <Outlet />
-      <AppPagination total_pages={total_pages} />
     </div>
   );
 };

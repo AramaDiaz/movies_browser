@@ -10,15 +10,15 @@ import LocalActivityIcon from '@mui/icons-material/LocalActivity';
 import Genres from './Genres';
 import { NavLink } from 'react-router-dom';
 import { clearSearch } from '../redux/actions/search.actions';
-import { connect, useDispatch } from 'react-redux';
+import { connect, useDispatch, useSelector } from 'react-redux';
 import { State } from '../redux/reducers/root-reducer';
 import { clearSelect } from '../redux/actions/genre.actions';
 
 const Navigation = () => {
+  const search = useSelector((state: State) => state.search.searchTerm);
   const dispatch = useDispatch();
 
-  const handleChange = (event: React.MouseEvent<HTMLAnchorElement>) => {
-    // dispatch(clearSearch());
+  const handleChange = (e: React.MouseEvent<HTMLAnchorElement>) => {
     dispatch(clearSelect());
   };
 
