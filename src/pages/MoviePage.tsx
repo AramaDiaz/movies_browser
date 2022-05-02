@@ -39,6 +39,7 @@ const MoviePage = () => {
     genres,
     release_date,
     runtime,
+    vote_average,
   } = movie;
 
   return (
@@ -81,10 +82,10 @@ const MoviePage = () => {
                         alignItems: 'center',
                       }}
                     >
-                      <h2>{movie.title} </h2>
+                      <h2>{title} </h2>
                       <Stack spacing={1}>
                         <Rating
-                          value={movie.vote_average * 0.5}
+                          value={vote_average * 0.5}
                           precision={0.1}
                           max={5}
                           emptyIcon={

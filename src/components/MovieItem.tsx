@@ -24,6 +24,7 @@ const MovieItem = ({ entry, path }: MovieItemProps) => {
         >
           <Link
             to={`${path}/movie/${id}-${title
+              .replace('%', '_')
               .replaceAll(' ', '_')
               .toLocaleLowerCase()}`}
           >

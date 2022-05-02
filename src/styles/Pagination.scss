@@ -1,7 +1,6 @@
 .MuiPagination-ul {
-  & .Mui-selected {
+  & .MuiPaginationItem-root.Mui-selected {
     background-color: #7a99d9;
-
     color: #fff;
   }
 }
