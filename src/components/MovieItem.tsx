@@ -45,7 +45,7 @@ const MovieItem = ({ entry, path }: MovieItemProps) => {
                     <Rating
                       max={1}
                       defaultValue={10}
-                      sx={{ fontSize: '1rem', color: '#fff' }}
+                      sx={{ fontSize: '1rem', color: '#FFA500' }}
                     />
                     <span className='rating'>{vote_average}</span>
                   </div>
