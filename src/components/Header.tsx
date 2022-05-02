@@ -23,7 +23,7 @@ const Header = () => {
           display: 'flex',
           flexDirection: 'row',
           alignItems: 'center',
-          backgroundColor: '#03045e',
+          backgroundColor: '#1C3A94',
         }}
       >
         <Toolbar>
