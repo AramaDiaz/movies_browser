@@ -5,6 +5,7 @@ import PaginationItem from '@mui/material/PaginationItem';
 import { PaginationProps } from '../types';
 import { clearSelect } from '../redux/actions/genre.actions';
 import { useDispatch } from 'react-redux';
+import '../styles/Pagination.scss';
 
 const AppPagination = ({ total_pages }: PaginationProps) => {
   const location = useLocation();
@@ -18,10 +19,12 @@ const AppPagination = ({ total_pages }: PaginationProps) => {
 
   return (
     <Pagination
+      className='pagination'
       page={pageNo}
       count={total_pages}
       renderItem={(item) => (
         <PaginationItem
+          className='pagination-item'
           component={Link}
           to={`${item.page === 1 ? '' : `?page=${item.page}`}`}
           {...item}
